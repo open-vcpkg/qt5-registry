@@ -11,6 +11,10 @@
     "qt5-webkit": {
       "baseline": "2023-08-11",
       "port-version": 0
+    },
+    "quazip-qt5": {
+      "baseline": "1.4",
+      "port-version": 0
     }
   }
 }
