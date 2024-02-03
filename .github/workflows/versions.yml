@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - qca-qt5
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -86,7 +86,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           file_pattern: versions/*
-          commit_message: ${{ steps.last-commit-message.outputs.msg }}
-          push_options: --force
-          commit_options: --amend --no-edit
+          commit_message: Update versions.db
           skip_fetch: true
