@@ -1,6 +1,6 @@
 {
   "name": "qt5-webkit",
-  "version": "2023-08-11",
+  "version": "5.212.0-alpha4",
   "description": "Qt5 port of webkit.",
   "homepage": "https://github.com/movableink/webkit",
   "dependencies": [
@@ -25,7 +25,14 @@
       ]
     },
     "libxml2",
-    "shiftmedia-libgcrypt",
+    {
+      "name": "shiftmedia-libgcrypt",
+      "platform": "windows"
+    },
+    {
+      "name": "libgcrypt",
+      "platform": "!windows"
+    },
     "gperf",
     {
       "name": "vcpkg-cmake",
