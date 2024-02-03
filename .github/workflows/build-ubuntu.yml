@@ -1,0 +1,55 @@
+name: "Ubuntu"
+
+on: [push, workflow_dispatch]
+
+env:
+  VCPKG_FEATURE_FLAGS: "registries,binarycaching,manifests,versions"
+
+jobs:
+  overlay:
+    # check https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
+    runs-on: "ubuntu-22.04"
+    strategy:
+      matrix:
+        include:
+          - vcpkg_tag: "2024.01.12"
+            vcpkg_commit: "53bef8994c541b6561884a8395ea35715ece75db"
+      fail-fast: false
+    env:
+      VCPKG_OVERLAY_PORTS: "${{ github.workspace }}/ports"
+      VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/triplets
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ConorMacBride/install-package@v1
+        with:
+          apt: nuget nasm libnuma-dev libopenmpi-dev libx11-dev libxi-dev libxext-dev libx11-xcb-dev
+
+      - name: "create cache folders"
+        run: |
+          mkdir -p ${VCPKG_DOWNLOADS}
+          mkdir -p ${VCPKG_DEFAULT_BINARY_CACHE}
+        env:
+          VCPKG_DOWNLOADS: "${{ runner.temp }}/vcpkg-downloads"
+          VCPKG_DEFAULT_BINARY_CACHE: "${{ runner.temp }}/vcpkg-archives"
+
+      - uses: actions/cache@v3.3.2
+        with:
+          key: "x64-linux-${{ matrix.vcpkg_tag }}"
+          path: |
+            ${{ runner.temp }}/vcpkg-downloads
+            ${{ runner.temp }}/vcpkg-archives
+
+      - uses: lukka/run-vcpkg@v11.3
+        with:
+          vcpkgDirectory: "/usr/local/share/vcpkg"
+          doNotUpdateVcpkg: true
+          vcpkgGitCommitId: "${{ matrix.vcpkg_commit }}"
+          vcpkgJsonGlob: "test/vcpkg.json"
+          runVcpkgInstall: true
+          runVcpkgFormatString: '[`install`, `--clean-buildtrees-after-build`, `--clean-packages-after-build`, `--triplet`, `$[env.VCPKG_DEFAULT_TRIPLET]`]'
+        env:
+          VCPKG_DEFAULT_TRIPLET: "x64-linux"
+          VCPKG_BINARY_SOURCES: "default"
+          VCPKG_DOWNLOADS: "${{ runner.temp }}/vcpkg-downloads"
+          VCPKG_DEFAULT_BINARY_CACHE: "${{ runner.temp }}/vcpkg-archives"
