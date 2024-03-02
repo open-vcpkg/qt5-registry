@@ -1,0 +1,32 @@
+{
+  "name": "py-pyqt5",
+  "version": "5.15.10",
+  "description": "Python bindings for the Qt cross platform application toolkit",
+  "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
+  "dependencies": [
+    "python3",
+    "py-sip",
+    "py-pyqt5-sip",
+    "py-pyqt-builder",
+    "py-ply",
+    "py-packaging",
+    {
+      "name": "qt5-activeqt",
+      "platform": "windows"
+    },
+    "qt5-base",
+    "qt5-multimedia",
+    "qt5-sensors",
+    "qt5-svg",
+    "qt5-webchannel",
+    "qt5-websockets",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-qmake-qt5",
+      "host": true
+    }
+  ]
+}
