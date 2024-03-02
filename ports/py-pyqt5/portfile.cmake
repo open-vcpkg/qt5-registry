@@ -28,11 +28,11 @@ vcpkg_backup_env_variables(VARS PATH)
 vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/qt5/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
 
 message(STATUS "Running sipbuild...")
-#vcpkg_execute_required_process(
-#    COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
-#    WORKING_DIRECTORY "${SOURCE_PATH}"
-#    LOGNAME "sipbuild-${TARGET_TRIPLET}"
-#)
+vcpkg_execute_required_process(
+    COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
+    WORKING_DIRECTORY "${SOURCE_PATH}"
+    LOGNAME "sipbuild-${TARGET_TRIPLET}"
+)
 message(STATUS "Running sipbuild...finished.")
 
 # inventory.txt is consumed by the distinfo tool which is run during make and should be run against the package directory
