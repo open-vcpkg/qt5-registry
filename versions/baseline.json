@@ -1,5 +1,13 @@
 {
   "default": {
+    "py-pyqt5": {
+      "baseline": "5.15.10",
+      "port-version": 0
+    },
+    "py-pyqt5-sip": {
+      "baseline": "12.13.0",
+      "port-version": 0
+    },
     "qca-qt5": {
       "baseline": "2.3.7",
       "port-version": 0
@@ -14,6 +22,10 @@
     },
     "quazip-qt5": {
       "baseline": "1.4",
+      "port-version": 0
+    },
+    "vcpkg-qmake-qt5": {
+      "baseline": "2024-02-29",
       "port-version": 0
     }
   }
