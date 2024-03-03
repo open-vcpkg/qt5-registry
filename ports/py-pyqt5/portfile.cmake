@@ -25,7 +25,7 @@ set(SIPBUILD_ARGS
 
 vcpkg_backup_env_variables(VARS PATH)
 
-vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/qt5/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
+vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/")
 
 message(STATUS "Running sipbuild...")
 vcpkg_execute_required_process(
@@ -45,5 +45,7 @@ vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.
             "${CURRENT_PACKAGES_DIR}")
 
 vcpkg_qmake_build(BUILD_LOGNAME "install" TARGETS "install")
+
+vcpkg_restore_env_variables(VARS PATH)
 
 vcpkg_python_test_import(MODULE "PyQt5.QtCore")
