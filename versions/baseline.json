@@ -2,7 +2,7 @@
   "default": {
     "py-pyqt5": {
       "baseline": "5.15.10",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyqt5-sip": {
       "baseline": "12.13.0",
