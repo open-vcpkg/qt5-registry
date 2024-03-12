@@ -22,7 +22,7 @@ set(SIPBUILD_ARGS
     "--no-make"
     "--verbose"
     "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
-    "--target-dir" "${CURRENT_INSTALLED_DIR}/tools/python3/Lib/site-packages/"
+    "--target-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
 
 # TODO: help it find sip include dirs, manually patched into sipbuild/project.py for now
