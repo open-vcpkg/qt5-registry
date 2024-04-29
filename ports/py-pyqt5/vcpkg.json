@@ -1,7 +1,7 @@
 {
   "name": "py-pyqt5",
   "version": "5.15.10",
-  "port-version":2,
+  "port-version":3,
   "description": "Python bindings for the Qt cross platform application toolkit",
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
@@ -20,6 +20,7 @@
     "qt5-sensors",
     "qt5-svg",
     "qt5-webchannel",
+    "qt5-xmlpatterns",
     "qt5-websockets",
     {
       "name": "vcpkg-python-scripts",
@@ -29,5 +30,13 @@
       "name": "vcpkg-qmake-qt5",
       "host": true
     }
-  ]
+  ],
+  "features":{
+    "3d": {
+      "description": "Build with 3d",
+      "dependencies": [
+        "qt5-3d"
+      ]
+    }
+  }
 }
